@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Codeで副業の作業を回す｜けいたのAI社員の実験ノート</title>
+<meta name="description" content="会社員のけいたが、Claude CodeのAI社員に副業の作業を任せている実録と道具。予定表に1行書くと決まった時刻にAIの係が動き、結果が残る仕組み、AI社員スターター、副業スキル集を紹介。まず読む無料の記事とLINEのチェック表もここから。">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1f2a44">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Claude Codeで副業の作業を回す｜けいたのAI社員の実験ノート">
+<meta property="og:description" content="会社員の副業を、Claude CodeのAI社員と回す実録と道具。予定表で動く運用係、AI社員スターター、副業スキル集。まず読む無料の記事とLINEのチェック表も。">
+<meta property="og:site_name" content="けいた｜AI社員の実験ノート">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://keita-aiwork.github.io/img/og.jpg">
+<meta property="og:url" content="https://keita-aiwork.github.io/">
+<link rel="canonical" href="https://keita-aiwork.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "#keita",
+      "name": "けいた",
+      "description": "会社員。Claude Code（AI社員）に副業の作業を任せる実録をnoteで書いている。",
+      "sameAs": [
+        "https://note.com/keita_aiwork",
+        "https://x.com/keita_aiwork",
+        "https://www.youtube.com/@keita_aiwork"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "name": "けいた｜AI社員の実験ノート",
+      "description": "Claude Codeで副業の作業を回す、会社員の実録と道具。",
+      "inLanguage": "ja",
+      "author": { "@id": "#keita" }
+    }
+  ]
+}
+</script>
+<style>
+:root{
+  --navy:#1f2a44;
+  --navy-2:#2c3a5c;
+  --orange:#e8751a;
+  --orange-ink:#b85508;
+  --yellow:#ffd23f;
+  --yellow-soft:#fff4c7;
+  --bg:#fffaf1;
+  --surface:#ffffff;
+  --surface-2:#f6efe2;
+  --text:#1f2a44;
+  --muted:#5b6478;
+  --line:#e7dcc8;
+  --ok:#2f7d4f;
+  --ok-bg:#e3f3e8;
+  --wait-bg:#fff1d6;
+  --shadow:0 6px 24px rgba(31,42,68,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121826;
+    --surface:#1a2235;
+    --surface-2:#222c43;
+    --text:#eef1f7;
+    --muted:#a9b2c6;
+    --line:#2f3a55;
+    --orange:#ff9a45;
+    --orange-ink:#ffb57a;
+    --yellow:#ffd84f;
+    --yellow-soft:#3a3420;
+    --ok:#7fd3a0;
+    --ok-bg:#1f3a2c;
+    --wait-bg:#3a3020;
+    --shadow:0 6px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121826;
+  --surface:#1a2235;
+  --surface-2:#222c43;
+  --text:#eef1f7;
+  --muted:#a9b2c6;
+  --line:#2f3a55;
+  --orange:#ff9a45;
+  --orange-ink:#ffb57a;
+  --yellow:#ffd84f;
+  --yellow-soft:#3a3420;
+  --ok:#7fd3a0;
+  --ok-bg:#1f3a2c;
+  --wait-bg:#3a3020;
+  --shadow:0 6px 24px rgba(0,0,0,.35);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic UI",sans-serif;
+  font-size:16px;
+  line-height:1.85;
+  overflow-x:hidden;
+  word-break:normal;
+  overflow-wrap:anywhere;
+}
+a{color:inherit}
+img{max-width:100%}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+.narrow{max-width:720px}
+section{padding:56px 0;scroll-margin-top:60px}
+h1,h2,h3{line-height:1.45;margin:0}
+h2{font-size:clamp(1.35rem,4.6vw,1.75rem);font-weight:900;margin-bottom:8px}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0 0 1em}
+.eyebrow{
+  display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.06em;
+  color:var(--orange-ink);margin-bottom:6px;
+}
+.sec-lead{color:var(--muted);margin-bottom:28px}
+.small{font-size:.85rem;color:var(--muted)}
+.nb{display:inline-block}
+
+/* header */
+.top{
+  position:sticky;top:0;z-index:10;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:saturate(1.2) blur(8px);
+  -webkit-backdrop-filter:saturate(1.2) blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:56px}
+.brand{font-weight:900;text-decoration:none;font-size:.98rem;white-space:nowrap}
+.brand span{color:var(--orange-ink)}
+.top-cta{
+  font-size:.82rem;font-weight:700;text-decoration:none;white-space:nowrap;
+  padding:7px 12px;border-radius:999px;background:var(--navy);color:#fff;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .top-cta{background:var(--yellow);color:#1f2a44}}
+:root[data-theme="dark"] .top-cta{background:var(--yellow);color:#1f2a44}
+
+/* hero */
+.hero{
+  padding:44px 0 56px;
+  background:
+    radial-gradient(600px 260px at 90% 0%,color-mix(in srgb,var(--yellow) 35%,transparent),transparent 70%),
+    radial-gradient(500px 240px at 0% 100%,color-mix(in srgb,var(--orange) 16%,transparent),transparent 70%);
+}
+.hero .catch{
+  font-size:clamp(1.55rem,6.4vw,2.5rem);font-weight:900;line-height:1.4;margin:0 0 14px;
+}
+.hero .catch .mark{
+  background:linear-gradient(transparent 62%,color-mix(in srgb,var(--yellow) 75%,transparent) 62%);
+}
+.hero h1{
+  font-size:clamp(1rem,3.6vw,1.15rem);font-weight:700;color:var(--muted);margin-bottom:24px;
+}
+.board{
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow);padding:14px 14px 10px;margin:0 0 26px;max-width:640px;
+}
+.board-head{display:flex;justify-content:space-between;gap:8px;font-size:.78rem;color:var(--muted);margin-bottom:8px}
+.row{
+  display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;
+  padding:10px 4px;border-top:1px dashed var(--line);font-size:.9rem;
+}
+.row:first-of-type{border-top:0}
+.row time{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+.row .what{min-width:0}
+.badge{font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.badge.ok{background:var(--ok-bg);color:var(--ok)}
+.badge.wait{background:var(--wait-bg);color:var(--orange-ink)}
+.board-note{font-size:.78rem;color:var(--muted);margin:6px 4px 2px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:52px;padding:12px 22px;border-radius:12px;
+  font-weight:700;text-decoration:none;font-size:1rem;line-height:1.4;text-align:center;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.btn-main{background:var(--orange);color:#fff;box-shadow:0 4px 0 var(--orange-ink)}
+.btn-line{background:var(--navy);color:#fff;box-shadow:0 4px 0 #0f1628}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .btn-main{color:#1f2a44}
+  :root:not([data-theme="light"]) .btn-line{background:var(--yellow);color:#1f2a44;box-shadow:0 4px 0 #b39223}
+}
+:root[data-theme="dark"] .btn-main{color:#1f2a44}
+:root[data-theme="dark"] .btn-line{background:var(--yellow);color:#1f2a44;box-shadow:0 4px 0 #b39223}
+.btn small{display:block;font-weight:500;font-size:.78rem;opacity:.9}
+.btn .stack{display:flex;flex-direction:column}
+@media (max-width:560px){.cta-row .btn{width:100%}}
+
+/* change */
+.change{background:var(--surface-2)}
+.pairs{display:grid;gap:14px}
+.pair{
+  display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;
+}
+.pair .before,.pair .after{
+  border-radius:12px;padding:14px 16px;font-size:.95rem;
+}
+.pair .before{background:var(--surface);border:1px solid var(--line);color:var(--muted)}
+.pair .after{background:var(--yellow-soft);border:1px solid color-mix(in srgb,var(--yellow) 60%,var(--line));font-weight:700}
+.pair .arrow{display:flex;align-items:center;color:var(--orange);font-weight:900;font-size:1.3rem}
+.tag{display:block;font-size:.72rem;font-weight:700;letter-spacing:.05em;margin-bottom:4px;color:var(--muted)}
+.pair .after .tag{color:var(--orange-ink)}
+@media (max-width:640px){
+  .pair{grid-template-columns:1fr}
+  .pair .arrow{justify-content:center;transform:rotate(90deg);height:18px}
+}
+
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.num{
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow);
+}
+.num .big{font-size:2rem;font-weight:900;line-height:1.2;color:var(--navy)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .num .big{color:var(--yellow)}}
+:root[data-theme="dark"] .num .big{color:var(--yellow)}
+.num .big .u{font-size:1rem;margin-left:2px}
+.num p{margin:6px 0 8px;font-size:.95rem}
+.num .cond{font-size:.78rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin:0}
+.num.honest{border-color:color-mix(in srgb,var(--orange) 45%,var(--line))}
+.num.honest .big{color:var(--orange-ink)}
+
+/* products */
+.tools{background:var(--surface-2)}
+.cards{display:grid;gap:18px}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:22px 20px;box-shadow:var(--shadow);position:relative;
+}
+.card.featured{border:2px solid var(--orange)}
+.ribbon{
+  display:inline-block;font-size:.75rem;font-weight:700;background:var(--orange);color:#fff;
+  padding:3px 10px;border-radius:999px;margin-bottom:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ribbon{color:#1f2a44}}
+:root[data-theme="dark"] .ribbon{color:#1f2a44}
+.card h3{font-size:1.15rem;margin-bottom:6px}
+.card .hook{font-weight:700;margin-bottom:12px}
+.card dl{margin:0 0 14px;display:grid;gap:10px}
+.card dt{font-size:.75rem;font-weight:700;color:var(--orange-ink);letter-spacing:.04em}
+.card dd{margin:0;font-size:.95rem}
+.card ul{margin:4px 0 0;padding-left:1.2em}
+.card li{margin:2px 0}
+.card-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;border-top:1px dashed var(--line);padding-top:14px}
+.price{font-size:1.5rem;font-weight:900}
+.price small{font-size:.8rem;font-weight:500;color:var(--muted);margin-left:4px}
+.card .btn{min-height:46px;padding:10px 18px;font-size:.95rem}
+.sub-link{font-size:.88rem;margin-top:10px}
+.sub-link a{color:var(--orange-ink);font-weight:700}
+.which{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.which ul{margin:6px 0 0;padding-left:1.2em}
+
+/* reads */
+.reads{display:grid;gap:14px;counter-reset:r}
+.read{
+  display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;padding:16px 18px 16px 62px;position:relative;box-shadow:var(--shadow);
+  transition:border-color .15s ease;
+}
+.read:hover{border-color:var(--orange)}
+.read::before{
+  counter-increment:r;content:counter(r);
+  position:absolute;left:16px;top:16px;width:32px;height:32px;border-radius:50%;
+  background:var(--yellow);color:#1f2a44;font-weight:900;display:flex;align-items:center;justify-content:center;
+}
+.read .why{display:block;font-size:.78rem;font-weight:700;color:var(--orange-ink);margin-bottom:2px}
+.read .t{display:block;font-weight:700;line-height:1.6}
+.read .meta{display:block;font-size:.8rem;color:var(--muted);margin-top:4px}
+
+/* about */
+.about-box{
+  display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;
+}
+.avatar{
+  width:64px;height:64px;border-radius:50%;background:var(--navy);color:var(--yellow);
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.4rem;
+}
+.about-box p:last-child{margin-bottom:0}
+@media (max-width:480px){.about-box{grid-template-columns:1fr}}
+
+/* faq */
+.faq details{
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;padding:0 18px;
+}
+.faq summary{
+  cursor:pointer;list-style:none;font-weight:700;padding:16px 28px 16px 0;position:relative;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q. ";color:var(--orange-ink)}
+.faq summary::after{
+  content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);
+  font-size:1.3rem;color:var(--orange-ink);
+}
+.faq details[open] summary::after{content:"−"}
+.faq .ans{padding:0 0 16px}
+.faq .ans p:last-child{margin-bottom:0}
+.note-box{
+  margin-top:28px;border-left:4px solid var(--orange);background:var(--surface);
+  border-radius:0 12px 12px 0;padding:14px 18px;
+}
+.note-box ul{margin:6px 0 0;padding-left:1.2em}
+
+/* final cta */
+.final{background:var(--navy);color:#fff;text-align:center}
+.final h2{color:#fff}
+.final p{color:#d8deea}
+.final .cta-row{justify-content:center}
+.final .btn-line{background:var(--yellow);color:#1f2a44;box-shadow:0 4px 0 #b39223}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .final{background:#0c1120}}
+:root[data-theme="dark"] .final{background:#0c1120}
+
+/* footer */
+footer{padding:36px 0 48px;font-size:.88rem;color:var(--muted)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;padding:0;list-style:none}
+.links a{
+  display:inline-block;text-decoration:none;font-weight:700;color:var(--text);
+  border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--surface);
+}
+.links a:hover{border-color:var(--orange)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.btn,.read{transition:none}}
+
+/* 2026-10-03 追加：最初の画面の絵・アイコン・スマホの追いかけボタン */
+.hero-art{margin:26px 0 0}
+.hero-art img{width:100%;height:auto;display:block;border-radius:20px;box-shadow:0 18px 40px rgba(31,42,68,.14)}
+@media (min-width:980px){
+  .hero .wrap{max-width:1180px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);column-gap:44px;align-items:start}
+  .hero .wrap>*{grid-column:1}
+  .hero .wrap>.hero-art{grid-column:2;grid-row:1 / span 4;margin:6px 0 0;align-self:center}
+}
+.avatar.img{background:none;padding:0;overflow:hidden}
+.avatar.img img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+.sticky-cta{display:none}
+@media (max-width:720px){
+  .sticky-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--line)}
+  .sticky-cta a{flex:1;text-align:center;padding:12px 8px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+  .sticky-cta .s-main{background:var(--orange);color:#fff}
+  .sticky-cta .s-line{background:var(--navy);color:#fff}
+  body{padding-bottom:78px}
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sticky-cta .s-line{background:var(--yellow);color:#1f2a44}}
+:root[data-theme="dark"] .sticky-cta .s-line{background:var(--yellow);color:#1f2a44}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">けいた<span>｜</span>AI社員の実験ノート</a>
+    <a class="top-cta" href="https://line.me/R/ti/p/@214ybnbg" target="_blank" rel="noopener">LINEでチェック表</a>
+  </div>
+</header>
+
+<main>
+
+<!-- 1. ファーストビュー -->
+<section class="hero">
+  <div class="wrap">
+    <p class="catch"><span class="nb">寝る前に頼んだ</span><span class="nb">作業の結果が、</span><br><span class="mark"><span class="nb">朝には予定表に</span><span class="nb">残っている。</span></span></p>
+    <h1>Claude Codeで副業の作業を回す、会社員の実録と道具。AI社員と一緒に、決まった時刻に仕事が進む形を作っています。</h1>
+
+    <div class="board" aria-label="けいたの予定表の一部">
+      <div class="board-head"><span>僕の予定表（実物から一部だけ）</span><span>状態</span></div>
+      <div class="row">
+        <time>10/1 19:00</time>
+        <span class="what">YouTubeの固定コメントを付ける</span>
+        <span class="badge ok">済 19:02</span>
+      </div>
+      <div class="row">
+        <time>10/2 06:00</time>
+        <span class="what">noteの記事を公開する</span>
+        <span class="badge wait">待ち</span>
+      </div>
+      <p class="board-note">時刻が来るとAIの「係」が手順書どおりに動き、右端に「済」か「止めた理由」を書きます。</p>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-main" href="https://note.com/keita_aiwork/n/n890be0e85fe4" target="_blank" rel="noopener">
+        <span class="stack">無料の実録を読む<small>僕のPCで毎時動いている中身を全部</small></span>
+      </a>
+      <a class="btn btn-line" href="https://line.me/R/ti/p/@214ybnbg" target="_blank" rel="noopener">
+        <span class="stack">無料のチェック表をLINEで受け取る<small>AIの下書き5点チェック表</small></span>
+      </a>
+    </div>
+    <figure class="hero-art"><img src="img/hero.jpg" width="1600" height="900" alt="予定表のカードを指さして笑う、小さなロボットのAI社員のイラスト" fetchpriority="high"></figure>
+  </div>
+</section>
+
+<!-- 2. 困りごと → こう変わる -->
+<section class="change" id="change">
+  <div class="wrap">
+    <span class="eyebrow">AIに作業を任せる時の困りごと</span>
+    <h2>AIに頼んだのに、朝になっても終わっていない</h2>
+    <p class="sec-lead">僕がつまずいた3つと、今の形です。</p>
+
+    <div class="pairs">
+      <div class="pair">
+        <div class="before"><span class="tag">いまの困りごと</span>AIに「明日6時にやっておいて」と頼んだのに、動いていなかった</div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="after"><span class="tag">こう変わる</span>予定表に1行書けば、時刻に係が動き、「済」か止めた理由が残る</div>
+      </div>
+      <div class="pair">
+        <div class="before"><span class="tag">いまの困りごと</span>動いたかどうか、自分で見に行かないと分からない</div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="after"><span class="tag">こう変わる</span>止まったら、2時間おきの見張りの係が知らせてくる</div>
+      </div>
+      <div class="pair">
+        <div class="before"><span class="tag">いまの困りごと</span>「数字を盛らないで」など、同じ注意を毎回AIに言い直している</div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="after"><span class="tag">こう変わる</span>一度言った注意は覚え書きに残り、次から守られる</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 実録の数字 -->
+<section id="numbers">
+  <div class="wrap">
+    <span class="eyebrow">実録の数字</span>
+    <h2>AI社員に副業を任せた実録の数字</h2>
+    <p class="sec-lead">僕の環境で測った数字だけです。<br>良い物も悪い物も、そのまま載せます。</p>
+
+    <div class="nums">
+      <div class="num">
+        <div class="big">6<span class="u">日間</span></div>
+        <p>毎日・毎時の係が、予定の4〜11分後に抜けなく動いた</p>
+        <p class="cond">2026年9月26日〜10月1日／Claudeのデスクトップアプリ・Windows</p>
+      </div>
+      <div class="num">
+        <div class="big">約17<span class="u">分</span></div>
+        <p>空のフォルダから運用係キットを組み立て、試運転の行が「済」になるまで</p>
+        <p class="cond">2026年10月1日／僕のPC</p>
+      </div>
+      <div class="num">
+        <div class="big">9<span class="u">分</span>3<span class="u">秒</span></div>
+        <p>AI社員「ミオ」を採用してから、初仕事3本が届くまでのAIの作業時間</p>
+        <p class="cond">2026年9月26日／Windows 11＋WSL・Claude Code 2.1.267（インストールと読む時間は含まない）</p>
+      </div>
+      <div class="num">
+        <div class="big">14<span class="u">個</span></div>
+        <p>AIに口出しして、1週間でたまった「覚え書き」</p>
+        <p class="cond">2026年10月2日公開の記事より</p>
+      </div>
+      <div class="num">
+        <div class="big">vol.5</div>
+        <p>AIに副業を任せた実録シリーズを公開中（noteの記事は全部で89本）</p>
+        <p class="cond">2026年10月3日時点</p>
+      </div>
+      <div class="num honest">
+        <div class="big">98<span class="u">表示</span></div>
+        <p>僕が手で書いた手順の投稿。自動投稿ボットの平均は17表示だったので、今は手で書く方に寄せている</p>
+        <p class="cond">投稿から72時間後／実録vol.5（2026年10月3日）より</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 道具 -->
+<section class="tools" id="tools">
+  <div class="wrap">
+    <span class="eyebrow">道具</span>
+    <h2>Claude Codeに入れて使う、副業の道具3つ</h2>
+    <p class="sec-lead">どれも、僕の環境で今動いている物を元にしています。</p>
+
+    <div class="cards">
+      <article class="card featured">
+        <span class="ribbon">いちばん中身が多い</span>
+        <h3>予定表で動く運用係キット（Claude Codeの運用係一式）</h3>
+        <p class="hook">予定表に1行書くと、決まった時刻にAIが手順書どおりに動き、朝には「済」か「止めた理由」が書いてある。</p>
+        <dl>
+          <div>
+            <dt>手に入る物</dt>
+            <dd>
+              <ul>
+                <li>始めのプロンプト：貼ると、Claude Codeが1問ずつ聞きながらあなた用の一式を組み立てる</li>
+                <li>予定表・毎時の予定の係・2時間おきの見張りの係</li>
+                <li>手順書・決まり集・覚え書きの置き場</li>
+                <li>止まった4つの所の対処（最初から入れてある）</li>
+              </ul>
+            </dd>
+          </div>
+          <div>
+            <dt>向いている人</dt>
+            <dd>Claudeの有料プランがあり、決まった時刻にAIの作業を回したい人。消す・送る・払う・ログインは人の手に残したい人。</dd>
+          </div>
+        </dl>
+        <div class="card-foot">
+          <span class="price">¥980<small>note</small></span>
+          <a class="btn btn-main" href="https://note.com/keita_aiwork/n/n81e38f26e04b" target="_blank" rel="noopener">中身を見る</a>
+        </div>
+        <p class="sub-link">買う前に：<a href="https://note.com/keita_aiwork/n/n890be0e85fe4" target="_blank" rel="noopener">無料の記事で仕組みを全部見る</a></p>
+      </article>
+
+      <article class="card">
+        <h3>AI社員「ミオ」スターター</h3>
+        <p class="hook">Claude Codeに2回貼るだけで、1人目のAI社員が今夜のうちに最初の仕事を返してくる。</p>
+        <dl>
+          <div>
+            <dt>手に入る物</dt>
+            <dd>
+              <ul>
+                <li>消す・送る・払うは断る秘書「ミオ」の決まり一式（Windows・Mac）</li>
+                <li>初仕事3本：予定と宿題のまとめ・ブログの下書き・調べものの比較表</li>
+              </ul>
+            </dd>
+          </div>
+          <div>
+            <dt>向いている人</dt>
+            <dd>AIに仕事を任せるのが初めてで、まず1人目を動かしてみたい人。</dd>
+          </div>
+        </dl>
+        <div class="card-foot">
+          <span class="price">¥300<small>note</small></span>
+          <a class="btn btn-main" href="https://note.com/keita_aiwork/n/n8763527bb7c8" target="_blank" rel="noopener">中身を見る</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Claude Codeに入れるだけの副業スキル15本・日本版</h3>
+        <p class="hook">AIに毎回同じ注意を書かなくても、頼むたびに同じ形で返ってくる。</p>
+        <dl>
+          <div>
+            <dt>手に入る物</dt>
+            <dd>
+              <ul>
+                <li>note・Brain・LINE・Kindle・日本語のSNSの作業用スキル15本</li>
+                <li>投稿案には、1本ごとに文字数と点検の欄が付く</li>
+              </ul>
+            </dd>
+          </div>
+          <div>
+            <dt>向いている人</dt>
+            <dd>「数字を盛らないで」「言い切らないで」を毎回AIに書いている人。</dd>
+          </div>
+          <div>
+            <dt>先に書いておくこと</dt>
+            <dd>スキルを入れても、材料に無い体験が混ざることはありました。最後は人が読んで確かめます。</dd>
+          </div>
+        </dl>
+        <div class="card-foot">
+          <span class="price">¥980<small>note</small></span>
+          <a class="btn btn-main" href="https://note.com/keita_aiwork/n/n50733627434d" target="_blank" rel="noopener">中身を見る</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="which">
+      <strong>迷ったら</strong>
+      <ul>
+        <li>AIに任せるのが初めて → ミオ</li>
+        <li>決まった時刻に作業を回したい → 運用係キット</li>
+        <li>毎回の注意書きを減らしたい → スキル15本</li>
+      </ul>
+      <p class="small" style="margin:8px 0 0">価格は、noteの各ページの表示が最新です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. まず読む3本 -->
+<section id="start">
+  <div class="wrap narrow">
+    <span class="eyebrow">無料</span>
+    <h2>まず読むならこの3本（無料の記事）</h2>
+    <p class="sec-lead">上から順に読むと、何をしているかが分かります。</p>
+
+    <div class="reads">
+      <a class="read" href="https://note.com/keita_aiwork/n/nad1872cd633a" target="_blank" rel="noopener">
+        <span class="why">いちばん読まれている（スキ83）</span>
+        <span class="t">Claude Codeで「AI社員」を作ったら、副業作業を全部ひとりで抱えなくてよくなった</span>
+        <span class="meta">note・無料</span>
+      </a>
+      <a class="read" href="https://note.com/keita_aiwork/n/n890be0e85fe4" target="_blank" rel="noopener">
+        <span class="why">仕組みの中身を全部見せた回</span>
+        <span class="t">「AIでSNS自動化」の中身を、僕のPCで毎時動いている物で隠さず全部見せます｜止まった4つの所と直し方まで</span>
+        <span class="meta">note・無料</span>
+      </a>
+      <a class="read" href="https://note.com/keita_aiwork/n/nca7a3e63e9b6" target="_blank" rel="noopener">
+        <span class="why">最新の実録</span>
+        <span class="t">AIに「朝6時にやっておいて」が通じなかった。エラーなしで止まる4つの理由と直し方【実録vol.5】</span>
+        <span class="meta">note・無料</span>
+      </a>
+    </div>
+    <p class="small" style="margin-top:14px">前の回：<a href="https://note.com/keita_aiwork/n/n00ce9c08ad2d" target="_blank" rel="noopener">AIに副業を任せて7日目。「売上0円」と書いた2時間後に、100円売れた【実録vol.4】</a></p>
+  </div>
+</section>
+
+<!-- 6. けいたについて -->
+<section id="about" style="padding-top:0">
+  <div class="wrap narrow">
+    <span class="eyebrow">書いている人</span>
+    <h2>けいたについて</h2>
+    <div class="about-box">
+      <div class="avatar img"><img src="img/avatar.jpg" width="320" height="320" alt="けいたのアイコン（ロボットのイラスト）" loading="lazy"></div>
+      <div>
+        <p>会社員です。副業の作業をAI（Claude Code）に任せて、うまくいった所も止まった所も、noteに実録として書いています。</p>
+        <p>AIがやった作業は「AIがやった」と書き、自分がやったようには書きません。僕がやるのは、方針を決めることと口出し、ログインや支払いのような人が押す所です。</p>
+        <p>顔は出していません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. よくある質問 -->
+<section class="faq" id="faq" style="padding-top:0">
+  <div class="wrap narrow">
+    <span class="eyebrow">よくある質問</span>
+    <h2>Claude Codeの副業でよくある質問</h2>
+    <p class="sec-lead">買う前によく聞かれることです。</p>
+
+    <details>
+      <summary>プログラミングが分からなくても使えますか？</summary>
+      <div class="ans">
+        <p>道具は、Claude Codeの画面に文章を貼り、AIと話しながら進める形にしています。コードを書く前提にはしていません。</p>
+        <p>ただ、フォルダを作る・Claude Codeを入れるといった操作は出てきます。運用係キットには、入れ方の手順書（Windows・Mac）を入れています。</p>
+      </div>
+    </details>
+    <details>
+      <summary>PCは要りますか？スマホだけでもできますか？</summary>
+      <div class="ans">
+        <p>PC（WindowsかMac）が要ります。Claude CodeをPCで動かすためです。Claudeの有料プランも必要です。</p>
+        <p>運用係キットは、PCとClaudeのデスクトップアプリが開いている時に動きます。閉じていると動きません（実録vol.5で書いた、止まった理由の1つです）。スマホだけで回す方法は、まだ試していません。</p>
+      </div>
+    </details>
+    <details>
+      <summary>何から始めればいいですか？</summary>
+      <div class="ans">
+        <p>まず、上の無料の記事を1本読んでみてください。次に、LINEで「AIの下書き5点チェック表」を受け取ると、AIの下書きを出す前に見る所が分かります。</p>
+        <p>道具は、AIに任せるのが初めてならミオ、時刻で回したいなら運用係キットからがおすすめです。</p>
+      </div>
+    </details>
+
+    <div class="note-box">
+      <strong>先にお伝えしておくこと</strong>
+      <ul>
+        <li>収入や売上の約束はしません。数字は僕の環境での実測です。</li>
+        <li>1つの作業を同じ時刻に回すだけで、手順書も自分で書ける人は、Claude Code公式のルーティンだけで足りることがあります。</li>
+        <li>AIの出力は毎回ぶれます。公開や送信の前に、人が読む前提の道具です。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 最後の入口 -->
+<section class="final">
+  <div class="wrap narrow">
+    <h2>まずは無料の入口から</h2>
+    <p>仕組みの中身は、無料の記事で全部見られます。<br>LINEでは、AIの下書きのチェック表を配っています。</p>
+    <div class="cta-row">
+      <a class="btn btn-main" href="https://note.com/keita_aiwork/n/n890be0e85fe4" target="_blank" rel="noopener">無料の実録を読む</a>
+      <a class="btn btn-line" href="https://line.me/R/ti/p/@214ybnbg" target="_blank" rel="noopener">チェック表をLINEで受け取る</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 8. フッター -->
+<footer>
+  <div class="wrap">
+    <ul class="links">
+      <li><a href="https://line.me/R/ti/p/@214ybnbg" target="_blank" rel="noopener">LINE公式「けいた｜AI社員の実験ノート」</a></li>
+      <li><a href="https://note.com/keita_aiwork" target="_blank" rel="noopener">note</a></li>
+      <li><a href="https://x.com/keita_aiwork" target="_blank" rel="noopener">X</a></li>
+      <li><a href="https://www.youtube.com/@keita_aiwork" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://github.com/keita-aiwork/claude-code-schedule-lite" target="_blank" rel="noopener">GitHub（無料の予定表テンプレート）</a></li>
+    </ul>
+    <p>※記事と道具の下書きは、AI（Claude Code）が手伝っています。方針と最後の判断は、けいたがしています。</p>
+    <p>© けいた｜AI社員の実験ノート</p>
+  </div>
+</footer>
+
+<nav class="sticky-cta" aria-label="すぐ読む">
+  <a class="s-main" href="https://note.com/keita_aiwork/n/n890be0e85fe4" target="_blank" rel="noopener">無料の実録を読む</a>
+  <a class="s-line" href="https://line.me/R/ti/p/@214ybnbg" target="_blank" rel="noopener">LINEでチェック表</a>
+</nav>
+</body>
+</html>
